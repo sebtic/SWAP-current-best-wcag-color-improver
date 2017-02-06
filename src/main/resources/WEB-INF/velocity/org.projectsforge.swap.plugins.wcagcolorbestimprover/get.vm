@@ -1,0 +1,42 @@
+#set( $title = "Settings" )
+#parse("header.vm.included")
+
+#macro(outputvalue $data $name $title)
+	<p>
+		<label for="$name">$title (default: $data.getDefaultValue())</label>
+		<input name="$name" value="$data.get()">
+  </p>
+#end
+
+#macro(outputenum $data $name $title)
+	<p>
+		<label for="$name">$title (default: $data.getDefaultValue()): </label>
+	  <select name="$name">
+	    #foreach( $evalue in $data.getEnumType().getEnumConstants())
+	      #if( $evalue == $data.get() )
+	        <option value="$evalue" selected>$evalue</option>
+	      #else
+	        <option value="$evalue">$evalue</option>
+	      #end
+	    #end 
+	  </select>
+  </p> 
+#end
+
+<h3>WCAG Color best improver settings</h3>
+
+<form method="post" action="#">
+	#outputvalue($brightnessDifferenceThreshold "brightnessDifferenceThreshold" "Brightness difference threshold")
+	#outputvalue($tonalityDifferenceThreshold "tonalityDifferenceThreshold" "Tonality difference threshold")
+	#outputvalue($contrastRatioThreshold "contrastRatioThreshold" "Contrast ratio threshold (AA=4.5, AAA=7)")
+	#outputvalue($brightnessDifferenceWeight "brightnessDifferenceWeight" "Brightness difference weight")
+	#outputvalue($tonalityDifferenceWeight "tonalityDifferenceWeight" "Tonality difference threshold")
+	#outputvalue($contrastRatioWeight "contrastRatioWeight" "Contrast ratio threshold")
+	#outputenum($typeManagement "typeManagement" "typeManagement")
+	#outputenum($ruleSetManagement "ruleSetManagement" "ruleSetManagement")
+
+
+  <p class="submit"><input type="submit" value="Save changes"/></p>
+</form>
+
+#parse("footer.vm.included")

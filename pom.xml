@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
+ <parent>
+  <artifactId>swap</artifactId>
+  <groupId>org.projectsforge</groupId>
+  <version>0.17</version>
+ </parent>
+
+ <modelVersion>4.0.0</modelVersion>
+ <groupId>org.projectsforge.swap.plugins</groupId>
+ <artifactId>wcagcolorbestimprover</artifactId>
+ <name>SWAP plugins: CSS color best improver according to WCAG recommendations and experimentations</name>
+ <dependencies>
+  <dependency>
+   <groupId>org.projectsforge.swap</groupId>
+   <artifactId>proxy</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.projectsforge.swap</groupId>
+   <artifactId>core.mime.css</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.projectsforge.utils</groupId>
+   <artifactId>meta.api</artifactId>
+  </dependency>
+  <dependency>
+   <groupId>org.projectsforge.swap</groupId>
+   <artifactId>datasets.1</artifactId>
+   <scope>test</scope>
+  </dependency>
+  <dependency>
+   <groupId>junit</groupId>
+   <artifactId>junit</artifactId>
+   <scope>test</scope>
+  </dependency>  
+ </dependencies>
+
+ <build>
+  <plugins>
+   <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <configuration>
+     <executable>java</executable>
+     <arguments>
+      <argument>-Xmx512m</argument>
+      <argument>-cp</argument>
+      <classpath />
+      <argument>org.projectsforge.swap.proxy.starter.Main</argument>
+     </arguments>
+    </configuration>
+   </plugin>
+  </plugins>
+ </build>
+</project>
